@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Birthday Surprise</title>
+
+<style>
+
+body{
+background:#0b0b1f;
+color:white;
+font-family:Arial;
+text-align:center;
+overflow:hidden;
+margin:0;
+}
+
+h1{
+color:#e10600;
+margin-top:70px;
+font-size:55px;
+}
+
+button{
+padding:15px 30px;
+font-size:18px;
+border:none;
+border-radius:20px;
+background:#e10600;
+color:white;
+cursor:pointer;
+margin-top:20px;
+}
+
+button:hover{
+background:#ff2a2a;
+}
+
+#letter{
+display:none;
+background:#111;
+padding:20px;
+width:70%;
+margin:30px auto;
+border-radius:15px;
+}
+
+.car{
+position:fixed;
+bottom:40px;
+left:-200px;
+font-size:40px;
+animation:drive 8s linear infinite;
+}
+
+@keyframes drive{
+0%{left:-200px;}
+100%{left:110%;}
+}
+
+#gift{
+font-size:80px;
+cursor:pointer;
+margin-top:40px;
+}
+
+.confetti{
+position:fixed;
+width:10px;
+height:10px;
+background:red;
+top:-10px;
+animation:fall 4s linear infinite;
+}
+
+@keyframes fall{
+0%{transform:translateY(0);}
+100%{transform:translateY(110vh);}
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>🏁 Happy Birthday</h1>
+
+<p>I made this small website as a surprise.</p>
+
+<div id="gift" onclick="openGift()">🎁</div>
+
+<button onclick="openLetter()">Open Your Letter</button>
+
+<div id="letter">
+<h2>💌 Your Message</h2>
+<p>
+You can edit this message later and write your own birthday letter here.
+</p>
+</div>
+
+<div class="car">🏎️</div>
+
+<audio autoplay loop>
+<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3">
+</audio>
+
+<script>
+
+function openLetter(){
+document.getElementById("letter").style.display="block";
+}
+
+function openGift(){
+for(let i=0;i<120;i++){
+let conf=document.createElement("div");
+conf.className="confetti";
+conf.style.left=Math.random()*100+"vw";
+conf.style.background=["red","blue","white"][Math.floor(Math.random()*3)];
+conf.style.animationDuration=(Math.random()*3+2)+"s";
+document.body.appendChild(conf);
+
+setTimeout(()=>{conf.remove();},4000);
+}
+}
+
+</script>
+
+</body>
+</html>
