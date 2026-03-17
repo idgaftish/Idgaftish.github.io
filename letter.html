@@ -1,49 +1,95 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Letter</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poppins&family=Dancing+Script&display=swap" rel="stylesheet">
 
 <style>
 body{
 background:#0b0b1f;
-color:white;
-text-align:center;
-font-family:Arial;
-padding-top:100px;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+margin:0;
+font-family:'Poppins';
 }
 
-.gift{
-font-size:80px;
+/* paper */
+.paper{
+background:linear-gradient(white,#f5f5f5);
+padding:30px;
+border-radius:15px;
+max-width:650px;
+box-shadow:0 10px 40px rgba(0,0,0,0.7);
+}
+
+/* handwriting effect */
+#text{
+white-space:pre-line;
+font-family:'Dancing Script', cursive;
+font-size:20px;
+line-height:1.7;
+border-right:2px solid black;
+padding-right:5px;
+}
+
+/* button */
+button{
+margin-top:15px;
+padding:10px 20px;
+background:#e10600;
+color:white;
+border:none;
+border-radius:20px;
 cursor:pointer;
 }
 
-#letter{
-display:none;
-background:white;
-color:black;
-padding:20px;
-margin:20px;
-border-radius:10px;
+/* blinking cursor */
+@keyframes blink{
+0%{border-color:black;}
+50%{border-color:transparent;}
+100%{border-color:black;}
+}
+
+#text{
+animation:blink 1s infinite;
 }
 </style>
 </head>
 
 <body>
 
-<h1>🎁 Open Your Gift</h1>
+<div class="paper">
+<h2 style="font-family:'Playfair Display'">💌 For You</h2>
 
-<div class="gift" onclick="openGift()">🎁</div>
+<p id="text"></p>
 
-<div id="letter">
-<h2>Happy Birthday ❤️</h2>
-<p>Write your message here</p>
+<button onclick="startLetter()">Open Letter</button>
 </div>
 
-<a href="index.html">⬅ Back</a>
+<!-- 🎓 Graduation Music -->
+<audio id="music" loop>
+<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3">
+</audio>
 
 <script>
-function openGift(){
-document.getElementById("letter").style.display="block";
+let msg = "Happy birthday, my girl. It’s crazy to even think about this… how long it’s been. What, five years? No… it’s about to be six this year. Six whole years of knowing you, growing with you, and somehow ending up with a bond I never even saw coming. Time didn’t just pass, it literally ran — and every single moment with you just feels like a blur of laughter, chaos, and comfort.\n\nI swear, my 9th and 10th grade would have been so different without you. You made everything feel alive. From the smallest random conversations to the biggest moments, you were there. And I don’t think I ever realized in the beginning how important you would become to me. But now? It’s like you’re such a huge part of my life that the thought of things changing feels so unreal.\n\nAnd now here we are… standing at a point where we’re about to go to different colleges. I hate that. Like actually hate it. I don’t even know how to process it properly. Because how do I just… not have you around every day? How do I not hear your voice randomly, not meet you, not have those sudden plans, not have those almost-daily hugs that just made everything feel okay?\n\nI’m going to miss everything. Our daily gossips, the excitement when we meet, the hugs, the chaos, everything. Hyderabad feels different because of you. Nexus is literally our second home… Lakshore was next level… and everything just became ours.\n\nAnd whoever said you’re a red flag? Nahhh. They don’t know you like I do. And I always will.\n\nFARAK PADADHU NAKU. No matter what happens, you have me. Always.\n\nI LOVE YOU SOOO MUCH GURLIEEEEE. Always have, always will.";
+
+let i=0;
+
+function startLetter(){
+document.getElementById("music").play();
+
+function type(){
+if(i<msg.length){
+document.getElementById("text").innerHTML += msg.charAt(i);
+i++;
+setTimeout(type,25);
+}
+}
+type();
 }
 </script>
 
