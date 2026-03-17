@@ -3,58 +3,43 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poppins&family=Dancing+Script&display=swap" rel="stylesheet">
+<!-- handwriting font (clean, not cursive) -->
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
 
 <style>
 body{
-background:#0b0b1f;
+margin:0;
+background:#e8dcc7; /* paper color */
 display:flex;
 justify-content:center;
 align-items:center;
 height:100vh;
-margin:0;
-font-family:'Poppins';
+font-family:'Patrick Hand', cursive;
 }
 
-/* paper */
+/* paper card */
 .paper{
-background:linear-gradient(white,#f5f5f5);
-padding:30px;
-border-radius:15px;
-max-width:650px;
-box-shadow:0 10px 40px rgba(0,0,0,0.7);
+background:#fdf6e3;
+width:70%;
+max-width:700px;
+padding:40px;
+border-radius:10px;
+box-shadow:0 0 30px rgba(0,0,0,0.2);
+line-height:1.8;
+color:#333;
+text-align:left;
 }
 
-/* handwriting effect */
-#text{
+/* title */
+h1{
+text-align:center;
+margin-bottom:20px;
+}
+
+/* paragraph */
+p{
+font-size:18px;
 white-space:pre-line;
-font-family:'Dancing Script', cursive;
-font-size:20px;
-line-height:1.7;
-border-right:2px solid black;
-padding-right:5px;
-}
-
-/* button */
-button{
-margin-top:15px;
-padding:10px 20px;
-background:#e10600;
-color:white;
-border:none;
-border-radius:20px;
-cursor:pointer;
-}
-
-/* blinking cursor */
-@keyframes blink{
-0%{border-color:black;}
-50%{border-color:transparent;}
-100%{border-color:black;}
-}
-
-#text{
-animation:blink 1s infinite;
 }
 </style>
 </head>
@@ -62,36 +47,33 @@ animation:blink 1s infinite;
 <body>
 
 <div class="paper">
-<h2 style="font-family:'Playfair Display'">💌 For You</h2>
 
-<p id="text"></p>
+<h1>💌 For You</h1>
 
-<button onclick="startLetter()">Open Letter</button>
+<p>
+Happy birthday advviii
+
+It’s been like… what, five years? No… it’s going to be our sixth this year. And honestly, time just flew with you. My 9th and 10th grade? They were actually so insane, and you were the best part of it. I never thought we’d get this close… but now, I can’t even imagine things without you.
+
+I don’t even know how to explain what this is… like, how did we even get here? One day we were just normal, and now you’re literally my person.
+
+And now we’re going to different colleges… and I hate that. I’m actually going to miss you so much. Like really. The daily gossips, the random excitement when we see each other, the hugs (almost every single day), all those stupid, crazy conversations… everything.
+
+We did everything together. Literally everything. Hyderabad, Nexus — our second home — where all the chaos happened. Good, bad, everything. And Lakshore?? That was next level 😭 the things we thought would never happen… happened there only.
+
+Getting scolded by each other’s parents?? CRAZY memories. And hanging out with you? Always the best feeling.
+
+And whoever said you’re a red flag… nah. No way. They don’t even know you the way I do. Asala, they’ll never get it.
+
+“Farak padadhu naku” — I know you say that… but still, don’t overthink too much, okay? I’ll always be there.
+
+I LOVE YOU SO MUCHHH. Like actually more than I can ever explain. More than words, more than all this, more than everything.
+
+And no matter what happens next…  
+we’ll always have this.
+</p>
+
+<!-- ✍️ SIGNATURE -->
+<div style="margin-top:30px; text-align:right; font-size:22px;">
+    — tishaa 💖
 </div>
-
-<!-- 🎓 Graduation Music -->
-<audio id="music" loop>
-<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3">
-</audio>
-
-<script>
-let msg = "Happy birthday, my girl. It’s crazy to even think about this… how long it’s been. What, five years? No… it’s about to be six this year. Six whole years of knowing you, growing with you, and somehow ending up with a bond I never even saw coming. Time didn’t just pass, it literally ran — and every single moment with you just feels like a blur of laughter, chaos, and comfort.\n\nI swear, my 9th and 10th grade would have been so different without you. You made everything feel alive. From the smallest random conversations to the biggest moments, you were there. And I don’t think I ever realized in the beginning how important you would become to me. But now? It’s like you’re such a huge part of my life that the thought of things changing feels so unreal.\n\nAnd now here we are… standing at a point where we’re about to go to different colleges. I hate that. Like actually hate it. I don’t even know how to process it properly. Because how do I just… not have you around every day? How do I not hear your voice randomly, not meet you, not have those sudden plans, not have those almost-daily hugs that just made everything feel okay?\n\nI’m going to miss everything. Our daily gossips, the excitement when we meet, the hugs, the chaos, everything. Hyderabad feels different because of you. Nexus is literally our second home… Lakshore was next level… and everything just became ours.\n\nAnd whoever said you’re a red flag? Nahhh. They don’t know you like I do. And I always will.\n\nFARAK PADADHU NAKU. No matter what happens, you have me. Always.\n\nI LOVE YOU SOOO MUCH GURLIEEEEE. Always have, always will.";
-
-let i=0;
-
-function startLetter(){
-document.getElementById("music").play();
-
-function type(){
-if(i<msg.length){
-document.getElementById("text").innerHTML += msg.charAt(i);
-i++;
-setTimeout(type,25);
-}
-}
-type();
-}
-</script>
-
-</body>
-</html>
