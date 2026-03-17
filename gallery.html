@@ -1,40 +1,74 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Gallery</title>
+<title>Our Memories</title>
 
 <style>
+
 body{
-background:#050510;
+margin:0;
+font-family:Arial;
+background:linear-gradient(180deg,#050510,#0b0b1f,#000);
 color:white;
 text-align:center;
-font-family:Arial;
 }
 
+/* Title */
+h1{
+padding:30px;
+color:#e10600;
+font-size:50px;
+letter-spacing:2px;
+}
+
+/* Gallery Grid */
 .gallery{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:15px;
-padding:20px;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+padding:30px;
 }
 
-img{
+/* Image Style */
+.gallery img{
 width:100%;
 border-radius:15px;
-transition:0.3s;
+box-shadow:0 0 15px rgba(225,6,0,0.5);
+transition:0.4s;
 }
 
-img:hover{
-transform:scale(1.05);
+/* Hover Effect */
+.gallery img:hover{
+transform:scale(1.07);
+box-shadow:0 0 25px rgba(0, 89, 255, 0.8);
 }
+
+/* Back Button */
+a{
+display:inline-block;
+margin:30px;
+padding:12px 25px;
+background:#e10600;
+color:white;
+text-decoration:none;
+border-radius:20px;
+font-size:18px;
+}
+
+a:hover{
+background:#ff1e1e;
+}
+
 </style>
+
 </head>
 
 <body>
 
-<h1>Our Memories 📸</h1>
+<h1>🏁 Our Memories 📸</h1>
 
 <div class="gallery">
+
 <img src="photo1.jpg">
 <img src="photo2.jpg">
 <img src="photo3.jpg">
@@ -46,9 +80,10 @@ transform:scale(1.05);
 <img src="photo9.jpg">
 <img src="photo10.jpg">
 <img src="photo11.jpg">
+
 </div>
 
-<a href="index.html">⬅ Back</a>
+<a href="index.html">⬅ Back Home</a>
 
 </body>
 </html>
