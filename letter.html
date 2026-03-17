@@ -1,19 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Birthday Letter</title>
+<title>Letter</title>
+
+<style>
+body{
+background:#0b0b1f;
+color:white;
+text-align:center;
+font-family:Arial;
+padding-top:100px;
+}
+
+.gift{
+font-size:80px;
+cursor:pointer;
+}
+
+#letter{
+display:none;
+background:white;
+color:black;
+padding:20px;
+margin:20px;
+border-radius:10px;
+}
+</style>
 </head>
 
-<body style="background:#0b0b1f;color:white;text-align:center;font-family:Arial;">
+<body>
 
-<h1>Happy Birthday ❤️</h1>
+<h1>🎁 Open Your Gift</h1>
 
-<p>
-Write your full birthday message here.
-You can customize this anytime.
-</p>
+<div class="gift" onclick="openGift()">🎁</div>
 
-<a href="index.html">Back Home</a>
+<div id="letter">
+<h2>Happy Birthday ❤️</h2>
+<p>Write your message here</p>
+</div>
+
+<a href="index.html">⬅ Back</a>
+
+<script>
+function openGift(){
+document.getElementById("letter").style.display="block";
+}
+</script>
 
 </body>
 </html>
