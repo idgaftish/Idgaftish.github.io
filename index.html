@@ -1,128 +1,64 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Birthday Surprise</title>
+<title>F1 Birthday</title>
 
 <style>
-
 body{
-background:#0b0b1f;
+background:linear-gradient(#050510,#000);
 color:white;
-font-family:Arial;
 text-align:center;
+font-family:Arial;
 overflow:hidden;
-margin:0;
 }
 
 h1{
 color:#e10600;
-margin-top:70px;
-font-size:55px;
+margin-top:100px;
+font-size:60px;
 }
 
 button{
 padding:15px 30px;
+margin:10px;
 font-size:18px;
-border:none;
-border-radius:20px;
 background:#e10600;
 color:white;
+border:none;
+border-radius:25px;
 cursor:pointer;
-margin-top:20px;
-}
-
-button:hover{
-background:#ff2a2a;
-}
-
-#letter{
-display:none;
-background:#111;
-padding:20px;
-width:70%;
-margin:30px auto;
-border-radius:15px;
 }
 
 .car{
 position:fixed;
-bottom:40px;
-left:-200px;
-font-size:40px;
-animation:drive 8s linear infinite;
+bottom:20px;
+left:-300px;
+width:150px;
+animation:drive 4s linear infinite;
 }
 
 @keyframes drive{
-0%{left:-200px;}
-100%{left:110%;}
+0%{left:-300px;}
+100%{left:120%;}
 }
-
-#gift{
-font-size:80px;
-cursor:pointer;
-margin-top:40px;
-}
-
-.confetti{
-position:fixed;
-width:10px;
-height:10px;
-background:red;
-top:-10px;
-animation:fall 4s linear infinite;
-}
-
-@keyframes fall{
-0%{transform:translateY(0);}
-100%{transform:translateY(110vh);}
-}
-
 </style>
 </head>
 
 <body>
 
 <h1>🏁 Happy Birthday</h1>
+<p>For the most special person ❤️</p>
 
-<p>I made this small website as a surprise.</p>
+<a href="story.html"><button>Our Story</button></a>
+<a href="gallery.html"><button>Our Photos</button></a>
+<a href="letter.html"><button>Open Letter</button></a>
+<a href="surprise.html"><button>Final Surprise</button></a>
 
-<div id="gift" onclick="openGift()">🎁</div>
-
-<button onclick="openLetter()">Open Your Letter</button>
-
-<div id="letter">
-<h2>💌 Your Message</h2>
-<p>
-You can edit this message later and write your own birthday letter here.
-</p>
-</div>
-
-<div class="car">🏎️</div>
+<img class="car" src="https://cdn-icons-png.flaticon.com/512/744/744465.png">
 
 <audio autoplay loop>
-<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3">
+<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">
 </audio>
-
-<script>
-
-function openLetter(){
-document.getElementById("letter").style.display="block";
-}
-
-function openGift(){
-for(let i=0;i<120;i++){
-let conf=document.createElement("div");
-conf.className="confetti";
-conf.style.left=Math.random()*100+"vw";
-conf.style.background=["red","blue","white"][Math.floor(Math.random()*3)];
-conf.style.animationDuration=(Math.random()*3+2)+"s";
-document.body.appendChild(conf);
-
-setTimeout(()=>{conf.remove();},4000);
-}
-}
-
-</script>
 
 </body>
 </html>
