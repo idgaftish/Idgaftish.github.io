@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Final Surprise</title>
+<title>Surprise</title>
 
 <style>
 body{
-background:#0b0b1f;
+background:black;
 color:white;
 text-align:center;
 font-family:Arial;
@@ -18,43 +18,34 @@ background:#e10600;
 color:white;
 border:none;
 border-radius:20px;
-cursor:pointer;
 }
 
 .confetti{
 position:fixed;
-width:10px;
-height:10px;
+width:8px;
+height:8px;
 top:-10px;
 }
-
 </style>
-
 </head>
 
 <body>
 
-<h1>🎉 Final Surprise</h1>
+<h1>🎉 FINAL SURPRISE</h1>
 
-<button onclick="confetti()">Click Me</button>
-
-<br><br>
-
-<a href="index.html">Back Home</a>
+<button onclick="boom()">CLICK</button>
 
 <script>
-
-function confetti(){
-for(let i=0;i<120;i++){
+function boom(){
+for(let i=0;i<200;i++){
 let c=document.createElement("div");
 c.className="confetti";
 c.style.left=Math.random()*100+"vw";
 c.style.background=["red","blue","white"][Math.floor(Math.random()*3)];
-c.style.animation="fall 3s linear";
+c.style.animation="fall 4s linear";
 document.body.appendChild(c);
 }
 }
-
 </script>
 
 </body>
