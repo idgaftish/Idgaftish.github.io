@@ -20,11 +20,11 @@ margin-top:20px;
 color:#e10600;
 }
 
-/* smaller container */
+/* 60% size */
 .slideshow{
 position:relative;
-width:70%;
-max-width:600px;
+width:60%;
+max-width:550px;
 margin:auto;
 margin-top:40px;
 }
@@ -50,11 +50,13 @@ from{opacity:0;}
 to{opacity:1;}
 }
 
-/* caption */
-.caption{
-margin-top:15px;
-color:#ccc;
-font-size:16px;
+/* ending text */
+.end-text{
+display:none;
+margin-top:40px;
+font-size:22px;
+color:#e10600;
+animation:fade 2s;
 }
 </style>
 </head>
@@ -88,7 +90,9 @@ font-size:16px;
 
 </div>
 
-<p class="caption">some moments just stay forever 💫</p>
+<div class="end-text" id="endText">
+💌 and now… something for you
+</div>
 
 <script>
 let slideIndex = 0;
@@ -96,7 +100,16 @@ let slides = document.getElementsByClassName("slide");
 
 function showSlides(){
 if(slideIndex >= slides.length){
-return; // ❌ STOP after last photo
+
+// show ending text
+document.getElementById("endText").style.display = "block";
+
+// go to letter page after 3 sec
+setTimeout(function(){
+window.location.href = "letter.html";
+},3000);
+
+return;
 }
 
 for(let i=0;i<slides.length;i++){
