@@ -12,6 +12,7 @@ background:linear-gradient(to bottom,#0b0b1f,#1a1a40);
 color:white;
 font-family:'Poppins';
 text-align:center;
+overflow:hidden;
 }
 
 /* heading */
@@ -20,7 +21,7 @@ margin-top:20px;
 color:#e10600;
 }
 
-/* 60% size */
+/* slideshow */
 .slideshow{
 position:relative;
 width:60%;
@@ -32,6 +33,7 @@ margin-top:40px;
 /* slides */
 .slide{
 display:none;
+position:relative;
 }
 
 .slide img{
@@ -40,7 +42,20 @@ border-radius:15px;
 box-shadow:0 0 25px rgba(225,6,0,0.6);
 }
 
-/* fade */
+/* caption */
+.caption{
+position:absolute;
+bottom:10px;
+left:50%;
+transform:translateX(-50%);
+background:rgba(0,0,0,0.5);
+padding:10px 15px;
+border-radius:10px;
+font-size:14px;
+animation:fadeUp 1s;
+}
+
+/* animations */
 .fade{
 animation:fade 1.2s;
 }
@@ -48,6 +63,11 @@ animation:fade 1.2s;
 @keyframes fade{
 from{opacity:0;}
 to{opacity:1;}
+}
+
+@keyframes fadeUp{
+from{opacity:0; transform:translate(-50%,20px);}
+to{opacity:1; transform:translate(-50%,0);}
 }
 
 /* ending text */
@@ -65,46 +85,51 @@ animation:fade 2s;
 
 <h1>💖 Our Memories</h1>
 
-<!-- 🎶 MUSIC -->
+<!-- 🎶 background music -->
 <audio autoplay loop>
-<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3">
+<source src="https://cdn.pixabay.com/audio/2022/03/15/audio_115b9b4f57.mp3">
+</audio>
+
+<!-- 🏎️ WHOOSH SOUND -->
+<audio id="whoosh">
+<source src="https://cdn.pixabay.com/audio/2022/03/15/audio_9c2c6b1c8c.mp3">
 </audio>
 
 <div class="slideshow">
 
-<div class="slide fade"><img src="photo1.jpg"></div>
-<div class="slide fade"><img src="photo2.jpg"></div>
-<div class="slide fade"><img src="photo3.jpg"></div>
-<div class="slide fade"><img src="photo4.jpg"></div>
-<div class="slide fade"><img src="photo5.jpg"></div>
-<div class="slide fade"><img src="photo6.jpg"></div>
-<div class="slide fade"><img src="photo7.jpg"></div>
-<div class="slide fade"><img src="photo8.jpg"></div>
-<div class="slide fade"><img src="photo9.jpg"></div>
-<div class="slide fade"><img src="photo10.jpg"></div>
-<div class="slide fade"><img src="photo11.jpg"></div>
-<div class="slide fade"><img src="photo12.jpg"></div>
-<div class="slide fade"><img src="photo13.jpg"></div>
-<div class="slide fade"><img src="photo14.jpg"></div>
-<div class="slide fade"><img src="photo15.jpg"></div>
+<!-- SAME PHOTOS + CAPTIONS -->
+<div class="slide fade"><img src="photo1.jpg"><div class="caption">fareweellll was bad but with u damn </div></div>
+<div class="slide fade"><img src="photo2.jpg"><div class="caption">crazyyy dayyy our fits slayy 💖</div></div>
+<div class="slide fade"><img src="photo3.jpg"><div class="caption">the vieww with uuu! cutee ass 😭</div></div>
+<div class="slide fade"><img src="photo4.jpg"><div class="caption">chaos but together✨</div></div>
+<div class="slide fade"><img src="photo5.jpg"><div class="caption">laughing at nothing fr 💀</div></div>
+<div class="slide fade"><img src="photo6.jpg"><div class="caption">main character vibes 😌</div></div>
+<div class="slide fade"><img src="photo7.jpg"><div class="caption">lowkey one of my favs 💕</div></div>
+<div class="slide fade"><img src="photo8.jpg"><div class="caption">the memories hit different here</div></div>
+<div class="slide fade"><img src="photo9.jpg"><div class="caption">we looked TOO good 😭</div></div>
+<div class="slide fade"><img src="photo10.jpg"><div class="caption">our vibe >>>></div></div>
+<div class="slide fade"><img src="photo11.jpg"><div class="caption">just us forever</div></div>
+<div class="slide fade"><img src="photo12.jpg"><div class="caption">how are we this cute 💀</div></div>
+<div class="slide fade"><img src="photo13.jpg"><div class="caption">this day >>> everything</div></div>
+<div class="slide fade"><img src="photo14.jpg"><div class="caption">never getting over this</div></div>
+<div class="slide fade"><img src="photo15.jpg"><div class="caption">and this is just the start 💌</div></div>
 
 </div>
 
 <div class="end-text" id="endText">
-💌 and now… something for you
+💌 and now… something special for you
 </div>
 
 <script>
 let slideIndex = 0;
 let slides = document.getElementsByClassName("slide");
+let whoosh = document.getElementById("whoosh");
 
 function showSlides(){
 if(slideIndex >= slides.length){
 
-// show ending text
 document.getElementById("endText").style.display = "block";
 
-// go to letter page after 3 sec
 setTimeout(function(){
 window.location.href = "letter.html";
 },3000);
@@ -115,6 +140,10 @@ return;
 for(let i=0;i<slides.length;i++){
 slides[i].style.display="none";
 }
+
+/* PLAY WHOOSH */
+whoosh.currentTime = 0;
+whoosh.play();
 
 slides[slideIndex].style.display="block";
 slideIndex++;
