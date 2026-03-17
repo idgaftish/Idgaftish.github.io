@@ -18,18 +18,18 @@ text-align:center;
 h1{
 margin-top:20px;
 color:#e10600;
-letter-spacing:2px;
 }
 
-/* slideshow container */
+/* smaller container */
 .slideshow{
 position:relative;
-max-width:90%;
+width:70%;
+max-width:600px;
 margin:auto;
-margin-top:30px;
+margin-top:40px;
 }
 
-/* each slide */
+/* slides */
 .slide{
 display:none;
 }
@@ -37,18 +37,12 @@ display:none;
 .slide img{
 width:100%;
 border-radius:15px;
-box-shadow:0 0 30px rgba(225,6,0,0.6);
-transition:transform 2s ease;
+box-shadow:0 0 25px rgba(225,6,0,0.6);
 }
 
-/* slow zoom effect */
-.slide img:hover{
-transform:scale(1.03);
-}
-
-/* fade animation */
+/* fade */
 .fade{
-animation:fade 1.5s;
+animation:fade 1.2s;
 }
 
 @keyframes fade{
@@ -56,29 +50,11 @@ from{opacity:0;}
 to{opacity:1;}
 }
 
-/* caption text */
+/* caption */
 .caption{
 margin-top:15px;
-font-size:18px;
 color:#ccc;
-}
-
-/* dots */
-.dots{
-margin-top:15px;
-}
-
-.dot{
-height:10px;
-width:10px;
-margin:5px;
-background:#555;
-border-radius:50%;
-display:inline-block;
-}
-
-.active{
-background:#e10600;
+font-size:16px;
 }
 </style>
 </head>
@@ -87,7 +63,7 @@ background:#e10600;
 
 <h1>💖 Our Memories</h1>
 
-<!-- 🎶 BACKGROUND MUSIC (NO DOWNLOAD NEEDED) -->
+<!-- 🎶 MUSIC -->
 <audio autoplay loop>
 <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3">
 </audio>
@@ -112,34 +88,29 @@ background:#e10600;
 
 </div>
 
-<!-- dots -->
-<div class="dots">
-<span class="dot"></span>
-<span class="dot"></span>
-<span class="dot"></span>
-</div>
+<p class="caption">some moments just stay forever 💫</p>
 
 <script>
 let slideIndex = 0;
 let slides = document.getElementsByClassName("slide");
 
 function showSlides(){
+if(slideIndex >= slides.length){
+return; // ❌ STOP after last photo
+}
+
 for(let i=0;i<slides.length;i++){
 slides[i].style.display="none";
 }
 
+slides[slideIndex].style.display="block";
 slideIndex++;
-if(slideIndex > slides.length){slideIndex = 1;}
-
-slides[slideIndex-1].style.display="block";
 
 setTimeout(showSlides,2500);
 }
 
 showSlides();
 </script>
-
-<p class="caption">some moments just stay forever 💫</p>
 
 </body>
 </html>
