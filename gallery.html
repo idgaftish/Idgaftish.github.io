@@ -8,7 +8,7 @@
 <style>
 body{
 margin:0;
-background:linear-gradient(to bottom,#0b0b1f,#1a1a40);
+background:linear-gradient(to bottom,#050510,#1a1a40);
 color:white;
 font-family:'Poppins';
 text-align:center;
@@ -21,137 +21,180 @@ margin-top:20px;
 color:#e10600;
 }
 
-/* slideshow */
-.slideshow{
-position:relative;
-width:60%;
-max-width:550px;
+/* container */
+.container{
+width:65%;
+max-width:600px;
 margin:auto;
-margin-top:40px;
-}
-
-/* slides */
-.slide{
-display:none;
+margin-top:30px;
+height:80vh;
+overflow:hidden;
 position:relative;
 }
 
-.slide img{
+/* scroll area */
+.scroll{
+height:100%;
+overflow-y:auto;
+scroll-behavior:smooth;
+padding-bottom:100px;
+}
+
+/* photo */
+.photo{
+margin-bottom:40px;
+animation:fade 1s;
+}
+
+.photo img{
 width:100%;
 border-radius:15px;
 box-shadow:0 0 25px rgba(225,6,0,0.6);
 }
 
-/* caption */
 .caption{
-position:absolute;
-bottom:10px;
-left:50%;
-transform:translateX(-50%);
-background:rgba(0,0,0,0.5);
-padding:10px 15px;
-border-radius:10px;
+margin-top:10px;
 font-size:14px;
-animation:fadeUp 1s;
+opacity:0.85;
 }
 
 /* animations */
-.fade{
-animation:fade 1.2s;
-}
-
 @keyframes fade{
-from{opacity:0;}
-to{opacity:1;}
+from{opacity:0; transform:translateY(20px);}
+to{opacity:1; transform:translateY(0);}
 }
 
-@keyframes fadeUp{
-from{opacity:0; transform:translate(-50%,20px);}
-to{opacity:1; transform:translate(-50%,0);}
+/* finish line */
+.finish{
+position:absolute;
+bottom:0;
+width:100%;
+height:60px;
+background:repeating-linear-gradient(
+90deg,
+white 0px,
+white 20px,
+black 20px,
+black 40px
+);
+opacity:0;
 }
 
-/* ending text */
-.end-text{
-display:none;
-margin-top:40px;
+/* finish text */
+.finish-text{
+position:absolute;
+bottom:80px;
+width:100%;
 font-size:22px;
 color:#e10600;
-animation:fade 2s;
+opacity:0;
+}
+
+/* flash */
+.flash{
+position:fixed;
+width:100%;
+height:100%;
+background:white;
+opacity:0;
+pointer-events:none;
 }
 </style>
 </head>
 
 <body>
 
-<h1>💖 Our Memories</h1>
+<h1>🏎️ Our Memories</h1>
 
-<!-- 🎶 background music -->
-<audio autoplay loop>
-<source src="https://cdn.pixabay.com/audio/2022/03/15/audio_115b9b4f57.mp3">
+<!-- 🎶 MUSIC -->
+<audio id="bgMusic" autoplay loop>
+<source src="https://cdn.pixabay.com/audio/2022/10/25/audio_946b6f1c88.mp3">
 </audio>
 
-<!-- 🏎️ WHOOSH SOUND -->
+<!-- 🏎️ WHOOSH -->
 <audio id="whoosh">
 <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_9c2c6b1c8c.mp3">
 </audio>
 
-<div class="slideshow">
+<div class="container">
 
-<!-- SAME PHOTOS + CAPTIONS -->
-<div class="slide fade"><img src="photo1.jpg"><div class="caption">fareweellll was bad but with u damn </div></div>
-<div class="slide fade"><img src="photo2.jpg"><div class="caption">crazyyy dayyy our fits slayy 💖</div></div>
-<div class="slide fade"><img src="photo3.jpg"><div class="caption">the vieww with uuu! cutee ass 😭</div></div>
-<div class="slide fade"><img src="photo4.jpg"><div class="caption">chaos but together✨</div></div>
-<div class="slide fade"><img src="photo5.jpg"><div class="caption">laughing at nothing fr 💀</div></div>
-<div class="slide fade"><img src="photo6.jpg"><div class="caption">main character vibes 😌</div></div>
-<div class="slide fade"><img src="photo7.jpg"><div class="caption">lowkey one of my favs 💕</div></div>
-<div class="slide fade"><img src="photo8.jpg"><div class="caption">the memories hit different here</div></div>
-<div class="slide fade"><img src="photo9.jpg"><div class="caption">we looked TOO good 😭</div></div>
-<div class="slide fade"><img src="photo10.jpg"><div class="caption">our vibe >>>></div></div>
-<div class="slide fade"><img src="photo11.jpg"><div class="caption">just us forever</div></div>
-<div class="slide fade"><img src="photo12.jpg"><div class="caption">how are we this cute 💀</div></div>
-<div class="slide fade"><img src="photo13.jpg"><div class="caption">this day >>> everything</div></div>
-<div class="slide fade"><img src="photo14.jpg"><div class="caption">never getting over this</div></div>
-<div class="slide fade"><img src="photo15.jpg"><div class="caption">and this is just the start 💌</div></div>
+<div class="scroll" id="scroll">
+
+<div class="photo"><img src="photo1.jpg"><div class="caption">fareweellll was bad but with u damn</div></div>
+<div class="photo"><img src="photo2.jpg"><div class="caption">crazyyy dayyy our fits slayy 💖</div></div>
+<div class="photo"><img src="photo3.jpg"><div class="caption">the vieww with uuu! cutee ass 😭</div></div>
+<div class="photo"><img src="photo4.jpg"><div class="caption">chaos but together ✨</div></div>
+<div class="photo"><img src="photo5.jpg"><div class="caption">laughing at nothing fr 💀</div></div>
+<div class="photo"><img src="photo6.jpg"><div class="caption">us being us (cute picture of us tho)😌</div></div>
+<div class="photo"><img src="photo7.jpg"><div class="caption">lowkey one of my favs 💕</div></div>
+<div class="photo"><img src="photo8.jpg"><div class="caption">the memories hit different here</div></div>
+<div class="photo"><img src="photo9.jpg"><div class="caption">we looked TOO good 😭</div></div>
+<div class="photo"><img src="photo10.jpg"><div class="caption">our vibe >>>></div></div>
+<div class="photo"><img src="photo11.jpg"><div class="caption">just us forever</div></div>
+<div class="photo"><img src="photo12.jpg"><div class="caption">how are we this cute 💀</div></div>
+<div class="photo"><img src="photo13.jpg"><div class="caption">this day >>> everything</div></div>
+<div class="photo"><img src="photo14.jpg"><div class="caption">never getting over this</div></div>
+<div class="photo"><img src="photo15.jpg"><div class="caption">and this is just the start 💌</div></div>
 
 </div>
 
-<div class="end-text" id="endText">
-💌 and now… something special for you
+<div class="finish" id="finish"></div>
+<div class="finish-text" id="finishText">🏁 FINISH LINE</div>
+
 </div>
+
+<div class="flash" id="flash"></div>
 
 <script>
-let slideIndex = 0;
-let slides = document.getElementsByClassName("slide");
+let scrollBox = document.getElementById("scroll");
 let whoosh = document.getElementById("whoosh");
+let finish = document.getElementById("finish");
+let finishText = document.getElementById("finishText");
+let flash = document.getElementById("flash");
 
-function showSlides(){
-if(slideIndex >= slides.length){
+whoosh.volume = 0.12;
 
-document.getElementById("endText").style.display = "block";
+let speed = 0.5;
 
-setTimeout(function(){
+/* SPEED BUILDS UP */
+function autoScroll(){
+scrollBox.scrollTop += speed;
+
+/* increase speed gradually */
+if(speed < 3){
+speed += 0.002;
+}
+
+/* whoosh randomly */
+if(Math.random() < 0.03){
+whoosh.currentTime = 0;
+whoosh.play();
+}
+
+/* check finish */
+if(scrollBox.scrollTop + scrollBox.clientHeight >= scrollBox.scrollHeight){
+
+finish.style.opacity = 1;
+finishText.style.opacity = 1;
+
+/* flash effect */
+setTimeout(()=>{
+flash.style.opacity = 1;
+flash.style.transition = "1s";
+},1000);
+
+/* go to letter */
+setTimeout(()=>{
 window.location.href = "letter.html";
-},3000);
+},2500);
 
 return;
 }
 
-for(let i=0;i<slides.length;i++){
-slides[i].style.display="none";
+requestAnimationFrame(autoScroll);
 }
 
-/* PLAY WHOOSH */
-whoosh.currentTime = 0;
-whoosh.play();
-
-slides[slideIndex].style.display="block";
-slideIndex++;
-
-setTimeout(showSlides,2500);
-}
-
-showSlides();
+autoScroll();
 </script>
 
 </body>
