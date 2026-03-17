@@ -3,12 +3,13 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- handwritten font -->
 <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
 
 <style>
 body{
 margin:0;
-background:#e8dcc7;
+background:#e6d8b8;
 display:flex;
 justify-content:center;
 align-items:center;
@@ -17,17 +18,24 @@ font-family:'Patrick Hand', cursive;
 overflow:hidden;
 }
 
-/* paper */
+/* vintage paper */
 .paper{
 background:#fdf6e3;
 width:70%;
 max-width:700px;
 padding:40px;
-border-radius:10px;
-box-shadow:0 0 30px rgba(0,0,0,0.2);
-line-height:1.8;
+border-radius:8px;
+box-shadow:0 0 40px rgba(0,0,0,0.25);
 color:#333;
-animation:fadeIn 2s ease;
+line-height:1.9;
+opacity:0;
+animation:openPaper 2s ease forwards;
+}
+
+/* opening animation */
+@keyframes openPaper{
+from{transform:scale(0.8); opacity:0;}
+to{transform:scale(1); opacity:1;}
 }
 
 /* title */
@@ -36,55 +44,64 @@ text-align:center;
 }
 
 /* text */
-p{
+#text{
 font-size:18px;
 white-space:pre-line;
 }
 
-/* final text */
-.final-line{
+/* pen */
+.pen{
+position:fixed;
+width:35px;
+pointer-events:none;
+}
+
+/* final line */
+.final{
+opacity:0;
+text-align:center;
 margin-top:30px;
 font-size:22px;
-text-align:center;
-color:#555;
-letter-spacing:3px;
-opacity:0;
-animation:fadeText 3s ease forwards;
-animation-delay:3s;
+animation:fade 2s forwards;
+animation-delay:12s;
 }
 
 /* signature */
 .signature{
-margin-top:40px;
+opacity:0;
 text-align:right;
-font-size:26px;
-letter-spacing:2px;
-overflow:hidden;
-white-space:nowrap;
-border-right:2px solid #333;
-width:0;
-animation:typing 3s steps(20) forwards, blink 0.7s infinite;
-animation-delay:5s;
+font-size:24px;
+margin-top:20px;
+animation:fade 2s forwards;
+animation-delay:14s;
 }
 
 /* heart */
 .heart{
+opacity:0;
 text-align:center;
 font-size:28px;
-margin-top:20px;
-opacity:0;
 animation:pop 1s ease forwards;
-animation-delay:8s;
+animation-delay:16s;
 }
 
 /* confetti */
 .confetti{
 position:fixed;
-width:10px;
-height:10px;
-background:red;
+width:8px;
+height:8px;
 top:0;
 animation:fall 3s linear infinite;
+}
+
+/* animations */
+@keyframes fade{
+to{opacity:1;}
+}
+
+@keyframes pop{
+0%{transform:scale(0);opacity:0;}
+100%{transform:scale(1);opacity:1;}
 }
 
 @keyframes fall{
@@ -92,42 +109,14 @@ animation:fall 3s linear infinite;
 100%{transform:translateY(100vh);}
 }
 
-/* animations */
-@keyframes fadeIn{
-from{opacity:0;}
-to{opacity:1;}
-}
-
-@keyframes fadeText{
-to{opacity:1;}
-}
-
-@keyframes typing{
-from{width:0;}
-to{width:170px;}
-}
-
-@keyframes blink{
-0%{border-color:transparent;}
-50%{border-color:#333;}
-100%{border-color:transparent;}
-}
-
-@keyframes pop{
-0%{transform:scale(0);opacity:0;}
-100%{transform:scale(1);opacity:1;}
-}
-</style>/* 🏁 F1 RED GLOW PULSE */
+/* subtle F1 glow */
 body::before{
 content:"";
 position:fixed;
-top:0;
-left:0;
 width:100%;
 height:100%;
-background:radial-gradient(circle, rgba(225,6,0,0.15), transparent 70%);
+background:radial-gradient(circle, rgba(225,6,0,0.1), transparent 70%);
 animation:pulse 4s infinite;
-pointer-events:none;
 }
 
 @keyframes pulse{
@@ -135,20 +124,38 @@ pointer-events:none;
 50%{opacity:0.6;}
 100%{opacity:0.3;}
 }
+</style>
 </head>
 
 <body>
-    <!-- 🏎️ F1 ENGINE VIBE (SOFT) -->
+
+<!-- 🎶 soft happy birthday vibe -->
 <audio autoplay loop>
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">
+<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3">
+</audio>
+
+<!-- 🏎️ faint F1 vibe -->
+<audio autoplay loop>
+<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">
 </audio>
 
 <div class="paper">
 
 <h1>💌 For You</h1>
 
-<p>
-Happy birthday…
+<p id="text"></p>
+
+<div class="final">forever us.</div>
+<div class="signature">— tishaa 💖</div>
+<div class="heart">💖</div>
+
+</div>
+
+<!-- pen -->
+<img class="pen" id="pen" src="https://cdn-icons-png.flaticon.com/512/1828/1828925.png">
+
+<script>
+let message = `Happy birthday…
 
 It’s been like… what, five years? No… it’s going to be our sixth this year. And honestly, time just flew with you. My 9th and 10th grade? They were actually so insane, and you were the best part of it. I never thought we’d get this close… but now, I can’t even imagine things without you.
 
@@ -156,38 +163,42 @@ I don’t even know how to explain what this is… like, how did we even get her
 
 And now we’re going to different colleges… and I hate that. I’m actually going to miss you so much. Like really. The daily gossips, the random excitement when we see each other, the hugs (almost every single day), all those stupid, crazy conversations… everything.
 
-We did everything together. Literally everything. Hyderabad, Nexus — our second home — where all the chaos happened. Good, bad, everything. And Lakshore?? That was next level 😭 the things we thought would never happen… happened there only.
+We did everything together. Literally everything. Hyderabad, Nexus — our second home — where all the chaos happened. Good, bad, everything.
 
-Getting scolded by each other’s parents?? CRAZY memories. And hanging out with you? Always the best feeling.
+I LOVE YOU SO MUCHHH.  
+we’ll always have this.`;
 
-And whoever said you’re a red flag… nah. No way. They don’t even know you the way I do. Asala, they’ll never get it.
+let i = 0;
+let speed = 45; // SLOW WRITING
 
-“Farak padadhu naku” — I know you say that… but still, don’t overthink too much, okay? I’ll always be there.
+function typeWriter(){
+if(i < message.length){
+document.getElementById("text").innerHTML += message.charAt(i);
+i++;
 
-I LOVE YOU SO MUCHHH. Like actually more than I can ever explain. More than words, more than all this, more than everything.
+// move pen randomly slightly
+let pen = document.getElementById("pen");
+pen.style.top = (50 + Math.random()*10) + "%";
+pen.style.left = (45 + Math.random()*20) + "%";
 
-And no matter what happens next…  
-we’ll always have this.
-</p>
-
-<div class="final-line">forever us.</div>
-<div class="signature">— tishaa 💖</div>
-<div class="heart">💖</div>
-
-</div>
-
-<script>
-/* 🎉 CONFETTI AFTER HEART */
-setTimeout(()=>{
-for(let i=0;i<50;i++){
-let conf=document.createElement("div");
-conf.className="confetti";
-conf.style.left=Math.random()*100+"vw";
-conf.style.backgroundColor=["#e10600","#ffcc00","#ffffff"][Math.floor(Math.random()*3)];
-conf.style.animationDuration=(Math.random()*2+2)+"s";
-document.body.appendChild(conf);
+setTimeout(typeWriter, speed);
+}else{
+launchConfetti();
 }
-},8500);
+}
+
+function launchConfetti(){
+for(let i=0;i<60;i++){
+let c=document.createElement("div");
+c.className="confetti";
+c.style.left=Math.random()*100+"vw";
+c.style.backgroundColor=["#e10600","#ffcc00","#ffffff"][Math.floor(Math.random()*3)];
+c.style.animationDuration=(Math.random()*2+2)+"s";
+document.body.appendChild(c);
+}
+}
+
+typeWriter();
 </script>
 
 </body>
