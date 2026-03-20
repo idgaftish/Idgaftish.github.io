@@ -23,8 +23,8 @@ content:"";
 position:fixed;
 width:200%;
 height:200%;
-background:radial-gradient(circle, rgba(225,6,0,0.2), transparent);
-animation:move 8s infinite linear;
+background:radial-gradient(circle, rgba(225,6,0,0.25), transparent);
+animation:move 6s infinite linear;
 z-index:-1;
 }
 
@@ -42,16 +42,24 @@ margin-top:120px;
 }
 
 .light{
-width:22px;
-height:22px;
+width:24px;
+height:24px;
 background:#200;
 border-radius:50%;
 margin:10px;
 transition:0.3s;
+box-shadow:0 0 10px #300;
 }
 
-.active{background:red;}
-.go{background:lime;}
+.active{
+background:red;
+box-shadow:0 0 20px red;
+}
+
+.go{
+background:lime;
+box-shadow:0 0 25px lime;
+}
 
 /* TITLE */
 h1{
@@ -60,6 +68,7 @@ font-size:55px;
 margin-top:40px;
 opacity:0;
 transition:1s;
+text-shadow:0 0 20px red;
 }
 
 /* MENU */
@@ -85,18 +94,19 @@ transform:scale(1.1);
 box-shadow:0 0 20px red;
 }
 
-/* CAR */
+/* REALISTIC F1 CAR */
 .car{
 position:fixed;
 bottom:20px;
-left:-250px;
-width:160px;
-animation:drive 3s linear infinite;
+left:-300px;
+width:220px;
+animation:drive 2.5s linear infinite;
 display:none;
+filter:drop-shadow(0 0 10px red);
 }
 
 @keyframes drive{
-0%{left:-250px;}
+0%{left:-300px;}
 100%{left:120%;}
 }
 
@@ -105,15 +115,27 @@ display:none;
 position:fixed;
 bottom:0;
 width:100%;
-height:100px;
-background:linear-gradient(to top, rgba(255,255,255,0.2), transparent);
+height:120px;
+background:linear-gradient(to top, rgba(255,255,255,0.25), transparent);
 opacity:0;
 transition:1s;
+}
+
+/* FLASH EFFECT */
+.flash{
+position:fixed;
+width:100%;
+height:100%;
+background:white;
+opacity:0;
+pointer-events:none;
 }
 </style>
 </head>
 
 <body>
+
+<div class="flash" id="flash"></div>
 
 <div class="lights">
 <div class="light"></div>
@@ -132,13 +154,18 @@ transition:1s;
 <a href="surprise.html"><button>Final Surprise</button></a>
 </div>
 
-<img class="car" src="https://cdn-icons-png.flaticon.com/512/744/744465.png">
+<!-- BETTER F1 CAR IMAGE -->
+<img class="car" src="https://upload.wikimedia.org/wikipedia/commons/3/33/Red_Bull_Racing_RB18_F1_Car.png">
 
 <div class="smoke" id="smoke"></div>
 
 <!-- 🔊 SOUND -->
+<audio id="intro">
+<source src="f1intro.mp3">
+</audio>
+
 <audio id="engine">
-<source src="f1.mp3">
+<source src="engine.mp3">
 </audio>
 
 <script>
@@ -149,24 +176,36 @@ function startLights(){
 if(i < lights.length){
 lights[i].classList.add("active");
 i++;
-setTimeout(startLights,600);
+setTimeout(startLights,500);
 }
 else{
-setTimeout(go,800);
+setTimeout(go,700);
 }
 }
 
 function go(){
-document.getElementById("engine").play();
+/* PLAY F1 INTRO SOUND */
+document.getElementById("intro").play();
 
+/* FLASH LIKE LIGHTS OUT */
+let flash = document.getElementById("flash");
+flash.style.opacity = 1;
+setTimeout(()=>{flash.style.opacity=0;},200);
+
+/* CHANGE LIGHTS */
 lights.forEach(l=>l.classList.remove("active"));
 lights.forEach(l=>l.classList.add("go"));
 
+/* SHOW STUFF */
 document.getElementById("title").style.opacity=1;
 document.querySelector(".menu").style.display="block";
 document.querySelector(".car").style.display="block";
-
 document.getElementById("smoke").style.opacity=1;
+
+/* ENGINE SOUND AFTER INTRO */
+setTimeout(()=>{
+document.getElementById("engine").play();
+},1500);
 }
 
 /* START */
@@ -174,7 +213,7 @@ setTimeout(startLights,1000);
 
 /* SECRET CLICK 😏 */
 document.getElementById("title").onclick = function(){
-alert("You found the secret 💖");
+alert("Lights out and away we go 🏁💖");
 }
 </script>
 
