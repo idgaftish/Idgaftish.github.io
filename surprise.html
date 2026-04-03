@@ -1,124 +1,122 @@
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
-
 <style>
 body{
 margin:0;
 background:black;
-font-family:'Poppins';
 overflow:hidden;
-color:white;
-}
-
-/* NETFLIX INTRO */
-.intro{
-position:fixed;
-width:100%;
-height:100%;
-background:black;
 display:flex;
 justify-content:center;
 align-items:center;
-z-index:10;
+height:100vh;
 }
 
-.logo{
-font-size:50px;
-color:#e50914;
-letter-spacing:8px;
-animation:reveal 2s ease forwards;
+/* F1 lights */
+.lights{
+display:flex;
+gap:15px;
 }
 
-@keyframes reveal{
-0%{opacity:0; transform:scale(0.8);}
-100%{opacity:1; transform:scale(1);}
+.light{
+width:30px;
+height:30px;
+border-radius:50%;
+background:#300;
 }
 
-/* video container */
-.video-container{
+/* reveal image */
+.reveal{
 position:fixed;
 width:100%;
 height:100%;
 top:0;
 left:0;
 display:none;
-background:black;
 }
 
-video{
+.reveal img{
 width:100%;
 height:100%;
 object-fit:cover;
 }
 
-/* fade */
-.fade{
-animation:fade 1s forwards;
-}
-
-@keyframes fade{
-from{opacity:0;}
-to{opacity:1;}
+/* flash */
+.flash{
+position:fixed;
+width:100%;
+height:100%;
+background:white;
+opacity:0;
 }
 </style>
 </head>
 
 <body>
 
-<!-- 🎬 INTRO -->
-<div class="intro" id="intro">
-<div class="logo">TISHAA STUDIOS</div>
+<div class="lights" id="lights">
+<div class="light"></div>
+<div class="light"></div>
+<div class="light"></div>
+<div class="light"></div>
+<div class="light"></div>
 </div>
 
-<!-- 🎥 VIDEOS -->
-<div class="video-container" id="videoBox">
+<div class="flash" id="flash"></div>
 
-<video id="vid1" muted playsinline>
-<source src="video1.mp4" type="video/mp4">
-</video>
-
-<video id="vid2" muted playsinline style="display:none;">
-<source src="video2.mp4" type="video/mp4">
-</video>
-
+<div class="reveal" id="reveal">
+<img src="photo1.jpg">
 </div>
+
+<!-- whoosh -->
+<audio id="whoosh">
+<source src="https://cdn.pixabay.com/audio/2022/03/15/audio_9c2c6b1c8c.mp3">
+</audio>
 
 <script>
+let lights = document.querySelectorAll(".light");
+let whoosh = document.getElementById("whoosh");
 
-/* start after intro */
+/* turn lights red one by one */
+let i = 0;
+function startLights(){
+if(i < lights.length){
+lights[i].style.background="red";
+i++;
+setTimeout(startLights,600);
+}else{
+/* lights out */
 setTimeout(()=>{
-document.getElementById("intro").style.display="none";
+lights.forEach(l=>l.style.background="black");
 
-let box = document.getElementById("videoBox");
-box.style.display="block";
-box.classList.add("fade");
+/* whoosh */
+whoosh.play();
 
-let v1 = document.getElementById("vid1");
-let v2 = document.getElementById("vid2");
+/* flash */
+let flash = document.getElementById("flash");
+flash.style.opacity="1";
+flash.style.transition="0.3s";
 
-/* PLAY FIRST VIDEO */
-v1.play();
+/* reveal image */
+setTimeout(()=>{
+flash.style.opacity="0";
+document.getElementById("lights").style.display="none";
+document.getElementById("reveal").style.display="block";
+},300);
 
-/* AFTER FIRST → SECOND */
-v1.onended = function(){
-v1.style.display="none";
-v2.style.display="block";
-v2.play();
-
-/* AFTER SECOND → FINAL PAGE */
-v2.onended = function(){
+/* go to final */
 setTimeout(()=>{
 window.location.href="final.html";
-},1500);
-};
-};
+},4000);
 
-},2500);
+},800);
+}
+}
 
+startLights();
 </script>
 
 </body>
